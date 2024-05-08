@@ -52,6 +52,7 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
 //Implemente la función void insertTreeMap(TreeMap * tree, void* key, void * value). Esta función inserta un nuevo dato (key,value) en el árbol y hace que el current apunte al nuevo nodo. Para insertar un dato, primero debe realizar una búsqueda para encontrar donde debería ubicarse. Luego crear el nuevo nodo y enlazarlo. Si la clave del dato ya existe retorne sin hacer nada (recuerde que el mapa no permite claves repetidas).
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
     TreeNode * aux = tree->root;
+    TreeNode *aux_parent = NULL;
     while(aux != NULL)
     {
         if(is_equal(tree, key, aux->pair->key))
@@ -60,20 +61,19 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         }
         else if (tree->lower_than(key, aux->pair->key) || tree->lower_than(aux->pair->key, key))
         {
+            aux_parent = aux;
             aux = aux->left; //subarbol izq :)
         }
         else
         {
+            aux_parent = aux;
             aux = aux->right; //subarbol der
         }
     }
     //llegué al subarbol vacío donde debo insertar:
     TreeNode * tree_node_aux = createTreeNode(key, value);
-    if (tree->root == NULL)
-    {
-        //se inserta el nodo auxiliar en root.
-        tree->root = tree_node_aux;
-        tree->current = tree->root;
+    tree_node_aux->parent = aux_parent;
+    tree_node_aux = aux;
         //left y right y parent son null, como el root es root no tiene parent así que ta bien.
         
     }
