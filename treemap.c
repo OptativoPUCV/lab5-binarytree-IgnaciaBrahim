@@ -246,10 +246,10 @@ Pair * nextTreeMap(TreeMap * tree) {
         succ = minimum(aux->right);
     } else {
         // Si el nodo actual no tiene un subárbol derecho, el sucesor es el primer ancestro que es un hijo izquierdo
-        //TreeNode * parent = aux->parent;
-        while (aux != NULL && aux == aux->parent->right) {
+        TreeNode * parent = aux->parent;
+        while (parent != NULL && aux == parent->right) {
             aux = aux->parent;
-            //parent = parent->parent;
+            parent = parent->parent;
         }
         succ = aux;
     }
