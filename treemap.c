@@ -75,8 +75,6 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     tree_node_aux->parent = aux_parent;
     tree_node_aux = aux;
         //left y right y parent son null, como el root es root no tiene parent así que ta bien.
-        
-    }
     
 }
 
