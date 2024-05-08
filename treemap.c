@@ -233,12 +233,12 @@ Pair * nextTreeMap(TreeMap * tree) {
         return NULL;
     }
         
-    else if (aux->right != NULL)
+    if (aux->right != NULL)
     {
         //tiene sub arbol derecho
-        TreeNode *min = minimum(aux->right);
-        tree->current = min;
-        return min->pair;
+        aux = minimum(aux->right);
+        tree->current = aux;
+        return aux->pair;
     }
     else
     {
