@@ -236,6 +236,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     {
         //tiene sub arbol derecho
         aux = minimum(aux->right);
+        tree->current = aux;
         return aux->pair;
     }
     else
