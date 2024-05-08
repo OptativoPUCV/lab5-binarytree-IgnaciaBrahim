@@ -150,6 +150,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
                 {
                     node->parent->right = node->left;
                 }
+                node->left->parent = node->parent;
             }
             else
             {
@@ -161,6 +162,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
                 {
                     node->parent->left = node->right;
                 }
+                node->right->parent = node->parent;
             }
         }  
     }
