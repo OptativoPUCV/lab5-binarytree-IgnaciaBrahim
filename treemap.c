@@ -247,7 +247,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     } else {
         // Si el nodo actual no tiene un subárbol derecho, el sucesor es el primer ancestro que es un hijo izquierdo
         //TreeNode * parent = aux->parent;
-        while (parent != NULL && aux == parent->right) {
+        while (aux != NULL && aux == aux->parent->right) {
             aux = aux->parent;
             //parent = parent->parent;
         }
