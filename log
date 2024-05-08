@@ -84,3 +84,14 @@ treemap.c:113:6: note: declared here
 cc1: all warnings being treated as errors
 Compilation failed
 169edf4
+Wed 08 May 2024 01:51:53 AM UTC: 
+ treemap.c | 5 -----
+ 1 file changed, 5 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:137:20: error: unused variable ‘aux’ [-Werror=unused-variable]
+  137 |         TreeNode * aux = node->parent;
+      |                    ^~~
+cc1: all warnings being treated as errors
+Compilation failed
+7e78f6f

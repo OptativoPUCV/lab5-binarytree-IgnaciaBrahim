@@ -149,11 +149,6 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         //caso 3:
         
     }
-
-
-    
-    
-    return lalal;
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
