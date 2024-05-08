@@ -109,7 +109,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
             tree->current = aux;
             return aux->pair;
         }
-        else if (tree->lower_than(key, aux->pair->key) || tree->lower_than(aux->pair->key, key))
+        else if (tree->lower_than(key, aux->pair->key))
         {
             aux = aux->left; //subarbol izq :)
         }
@@ -118,7 +118,6 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
             aux = aux->right; //subarbol der
         }
     }
-    tree->current = NULL;
     return NULL;
 }
 
