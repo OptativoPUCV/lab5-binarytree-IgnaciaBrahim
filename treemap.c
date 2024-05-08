@@ -49,9 +49,35 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
     return map;
 }
 
-
+//Implemente la función void insertTreeMap(TreeMap * tree, void* key, void * value). Esta función inserta un nuevo dato (key,value) en el árbol y hace que el current apunte al nuevo nodo. Para insertar un dato, primero debe realizar una búsqueda para encontrar donde debería ubicarse. Luego crear el nuevo nodo y enlazarlo. Si la clave del dato ya existe retorne sin hacer nada (recuerde que el mapa no permite claves repetidas).
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
-
+    TreeNode * aux = tree->root;
+    while(aux != NULL)
+    {
+        if(is_equal(tree, key, aux->pair->key))
+        {
+            return;
+        }
+        else if (tree->lower_than(key, aux->pair->key) || tree->lower_than(aux->pair->key, key))
+        {
+            aux = aux->left; //subarbol izq :)
+        }
+        else
+        {
+            aux = aux->right; //subarbol der
+        }
+    }
+    //llegué al subarbol vacío donde debo insertar:
+    TreeNode * tree_node_aux = createTreeNode(key, value);
+    if (tree->root == NULL)
+    {
+        //se inserta el nodo auxiliar en root.
+        tree->root = tree_node_aux;
+        tree->current = tree->root;
+        //left y right y parent son null, como el root es root no tiene parent así que ta bien.
+        
+    }
+    
 }
 
 TreeNode * minimum(TreeNode * x){
@@ -73,10 +99,24 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 }
 
-
-
-
+//Implemente la función Pair* searchTreeMap(TreeMap* tree, void* key), la cual busca el nodo con clave igual a key y retorna el Pair asociado al nodo. Si no se encuentra la clave retorna NULL. Recuerde hacer que el current apunte al nodo encontrado.
 Pair * searchTreeMap(TreeMap * tree, void* key) {
+    TreeNode * aux = tree->root;
+    while(aux != NULL)
+    {
+        if(is_equal(tree, key, aux->pair->key))
+        {
+            return aux->pair;
+        }
+        else if (tree->lower_than(key, aux->pair->key) || tree->lower_than(aux->pair->key, key))
+        {
+            aux = aux->left; //subarbol izq :)
+        }
+        else
+        {
+            aux = aux->right; //subarbol der
+        }
+    }
     return NULL;
 }
 
