@@ -242,13 +242,26 @@ Pair * nextTreeMap(TreeMap * tree) {
     if (aux->right != NULL)
     {
         //tiene sub arbol derecho
-        tree->current = minimum(aux->right);
-        return tree->current->pair;
+        aux = minimum(aux->right);
+        return aux->pair;
     }
     else
     {
         //no tiene sub arbol derecho, vamos al padre.
+        TreeNode *parent = aux->parent;
+        while (parent != NULL && aux == parent->right) {
+            aux = parent;
+            parent = parent->parent;
+        }
+        if (parent == NULL)
+        {
+            //no hay siguiente pq se llego a root ya:
+            tree->current = NULL;
+            return NULL;
+        }
+        //si no se llego a la raiz se encontro sucesor:
+        tree->current = aux;
+        return aux->pair;
     }
-    
     return NULL;
 }
