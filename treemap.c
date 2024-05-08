@@ -73,9 +73,25 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     //llegué al subarbol vacío donde debo insertar:
     TreeNode * tree_node_aux = createTreeNode(key, value);
     tree_node_aux->parent = aux_parent;
-    tree_node_aux = aux;
-        //left y right y parent son null, como el root es root no tiene parent así que ta bien.
-    
+    if (aux_parent == NULL)
+    {
+        //entonces era la raiz
+        tree->root = tree_node_aux;
+    }
+    else
+    {
+        //si no es la raiz hay que preguntar si insertamos el "hijo" en el subarbol/izq o der.
+        if (tree->lower_than(key, aux_parent->pair->key))
+        {
+            aux_parent->left = tree_node_aux;
+            tree->current = tree_node_aux;
+        }
+        else
+        {
+            aux_parent->right = tree_node_aux;
+            tree->current = tree_node_aux;
+        }
+    }
 }
 
 TreeNode * minimum(TreeNode * x){
