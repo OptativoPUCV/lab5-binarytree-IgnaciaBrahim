@@ -227,27 +227,39 @@ Pair * firstTreeMap(TreeMap * tree) {
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
-    TreeNode * aux = tree->current;
-    if (aux == NULL)
-    {
+    if (tree == NULL || tree->root == NULL) {
+        return NULL; // Manejar caso de árbol vacío
+    }
+
+    TreeNode * current = tree->current;
+
+    // Si el nodo actual es NULL, establecemos el nodo actual como la raíz
+    if (current == NULL) {
+        tree->current = tree->root;
+        current = tree->current;
+    }
+
+    // Buscamos el sucesor del nodo actual
+    TreeNode * successor = NULL;
+    if (current->right != NULL) {
+        // Si el nodo actual tiene un subárbol derecho, el sucesor es el mínimo del subárbol derecho
+        successor = minimum(current->right);
+    } else {
+        // Si el nodo actual no tiene un subárbol derecho, el sucesor es el primer ancestro que es un hijo izquierdo
+        TreeNode * parent = current->parent;
+        while (parent != NULL && current == parent->right) {
+            current = parent;
+            parent = parent->parent;
+        }
+        successor = parent;
+    }
+
+    // Si no se encontró un sucesor, retornamos NULL
+    if (successor == NULL) {
         return NULL;
     }
-        
-    if (aux->right != NULL)
-    {
-        //tiene sub arbol derecho
-        aux = minimum(aux->right);
-        tree->current = aux;
-        return aux->pair;
-    }
-    else
-    {
-        //no tiene sub arbol derecho, vamos al padre.
-        while(aux->parent != NULL && aux->parent->right == aux)
-        {
-          aux = aux->parent;  
-        }
-        tree->current = aux;
-        return aux->pair;
-    }
+
+    // Actualizamos el nodo actual y retornamos el par asociado al sucesor
+    tree->current = successor;
+    return successor->pair;
 }
