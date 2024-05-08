@@ -118,6 +118,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
             aux = aux->right; //subarbol der
         }
     }
+    tree->current = NULL;
     return NULL;
 }
 
