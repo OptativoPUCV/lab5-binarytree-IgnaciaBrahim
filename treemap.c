@@ -228,38 +228,38 @@ Pair * firstTreeMap(TreeMap * tree) {
 
 Pair * nextTreeMap(TreeMap * tree) {
     if (tree == NULL || tree->root == NULL) {
-        return NULL; // Manejar caso de árbol vacío
+        return NULL; //esta vacio el arbol :)
     }
 
-    TreeNode * current = tree->current;
+    TreeNode * aux = tree->current;
 
-    // Si el nodo actual es NULL, establecemos el nodo actual como la raíz
-    if (current == NULL) {
+    // Hay que establecer el nodo actual como la raiz si es que no se especifica el current (la embarré aca)
+    if (aux == NULL) {
         tree->current = tree->root;
-        current = tree->current;
+        aux = tree->current;
     }
 
-    // Buscamos el sucesor del nodo actual
-    TreeNode * successor = NULL;
-    if (current->right != NULL) {
+    // Buscamos el sucesor del nodo actual (min)
+    TreeNode * succ = NULL;
+    if (aux->right != NULL) {
         // Si el nodo actual tiene un subárbol derecho, el sucesor es el mínimo del subárbol derecho
-        successor = minimum(current->right);
+        succ = minimum(aux->right);
     } else {
         // Si el nodo actual no tiene un subárbol derecho, el sucesor es el primer ancestro que es un hijo izquierdo
-        TreeNode * parent = current->parent;
-        while (parent != NULL && current == parent->right) {
-            current = parent;
-            parent = parent->parent;
+        //TreeNode * parent = aux->parent;
+        while (parent != NULL && aux == parent->right) {
+            aux = aux->parent;
+            //parent = parent->parent;
         }
-        successor = parent;
+        succ = aux;
     }
 
     // Si no se encontró un sucesor, retornamos NULL
-    if (successor == NULL) {
+    if (succ == NULL) {
         return NULL;
     }
 
     // Actualizamos el nodo actual y retornamos el par asociado al sucesor
-    tree->current = successor;
-    return successor->pair;
+    tree->current = succ;
+    return succ->pair;
 }
