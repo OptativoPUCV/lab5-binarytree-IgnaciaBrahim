@@ -263,5 +263,4 @@ Pair * nextTreeMap(TreeMap * tree) {
         tree->current = parent;
         return parent->pair;
     }
-    return NULL;
 }
