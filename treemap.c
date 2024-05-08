@@ -243,14 +243,7 @@ Pair * nextTreeMap(TreeMap * tree) {
         //no tiene sub arbol derecho, vamos al padre.
         while(aux->parent != NULL && aux->parent->right == aux)
         {
-            if (tree->lower_than(aux->pair->key, aux->parent->pair->key) != 1)
-            {
-                aux = aux->parent;
-            }
-            else
-            {
-                break;
-            }    
+          aux = aux->parent;  
         }
         tree->current = aux;
         return aux->pair;
