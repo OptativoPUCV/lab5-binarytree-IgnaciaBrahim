@@ -59,7 +59,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         {
             return;
         }
-        else if (tree->lower_than(key, aux->pair->key) || tree->lower_than(aux->pair->key, key))
+        else if (tree->lower_than(key, aux->pair->key))
         {
             aux_parent = aux;
             aux = aux->left; //subarbol izq :)
