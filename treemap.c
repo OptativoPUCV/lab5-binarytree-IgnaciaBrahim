@@ -260,8 +260,8 @@ Pair * nextTreeMap(TreeMap * tree) {
             return NULL;
         }
         //si no se llego a la raiz se encontro sucesor:
-        tree->current = aux;
-        return aux->pair;
+        tree->current = parent;
+        return parent->pair;
     }
     return NULL;
 }
