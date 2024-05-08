@@ -146,7 +146,13 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     else
     {
         //caso 3:
-        
+        TreeNode * aux = minimum(node->right);
+        //entonces se reemplazan los valores del nodo a eliminar por los del minimo:
+        node->pair->key = aux->pair->key;
+        node->pair->value = aux->pair->value;
+        //el parent sigue siendo el mismo porque solo copiamos los valores!
+        //luego se elimina el minimo:
+        removeNode(tree, aux);  
     }
 }
 
