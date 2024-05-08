@@ -251,7 +251,7 @@ Pair * nextTreeMap(TreeMap * tree) {
             aux = aux->parent;
             parent = parent->parent;
         }
-        succ = aux;
+        succ = parent;
     }
 
     // Si no se encontró un sucesor, retornamos NULL
