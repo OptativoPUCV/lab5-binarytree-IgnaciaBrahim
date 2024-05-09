@@ -215,17 +215,18 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 Pair * upperBound(TreeMap * tree, void* key) {
     Pair * ub_node = NULL; //no se ha encontrado :)
 
+    tree->current = tree->root;
     Pair * tree_pair = firstTreeMap(tree);
     Pair * search = searchTreeMap(tree, key);
     if (search == NULL)
     {
         if (tree->lower_than(tree_pair->key, key) == 1)
         {
-            ub_node = tree_pair;
+            tree_pair = nextTreeMap(tree);
         }
         else
         {
-            tree_pair = nextTreeMap(tree);
+            ub_node = tree_pair;
         }
     }
     else
