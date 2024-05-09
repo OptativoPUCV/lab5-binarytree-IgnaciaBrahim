@@ -214,8 +214,6 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 //La función Pair* upperBound(TreeMap* tree, void* key) retorna el Pair con clave igual a key. En caso de no encontrarlo retorna el primer par asociado a una clave mayor o igual a key. Para implementarla puede realizar una búsqueda normal y usar un puntero a nodo auxiliar ub_node que vaya guardando el nodo con la menor clave mayor o igual a key. Finalmente retorne el par del nodo ub_node.
 Pair * upperBound(TreeMap * tree, void* key) {
     Pair * ub_node = NULL; //no se ha encontrado :)
-
-    tree->current = tree->root;
     Pair * tree_pair = firstTreeMap(tree);
     Pair * search = searchTreeMap(tree, key);
     if (search == NULL)
