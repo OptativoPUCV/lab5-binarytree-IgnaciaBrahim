@@ -219,7 +219,7 @@ Pair * upperBound(TreeMap * tree, void* key) {
     Pair * search = searchTreeMap(tree, key);
     if (search == NULL)
     {
-        if (tree->lower_than(tree_pair->key, key) != 1)
+        if (tree->lower_than(tree_pair->key, key) == 1)
         {
             ub_node = tree_pair;
         }
